@@ -21,6 +21,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     if (token) {
       setIsLogin(true);
       console.log('token', token);
+    } else {
+      setIsLogin(false);
+      console.log('no token', token);
     }
   };
 

@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import AuthContext from '@/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN_TOKEN, URL } from '@/constant';
+import Button from '@/component/Button';
 
 const Login = () => {
   const { isLogin, getToken } = useContext(AuthContext);
@@ -23,7 +24,7 @@ const Login = () => {
   return (
     <div>
       <h2>Login</h2>
-      <button onClick={handleLogin}>click</button>
+      <Button onClick={handleLogin}>click</Button>
     </div>
   );
 };
