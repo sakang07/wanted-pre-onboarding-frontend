@@ -1,6 +1,6 @@
-export const LOGIN_TOKEN = 'LOGIN_TOKEN';
+export const SIGNIN_TOKEN = 'SIGNIN_TOKEN';
 export const URL = {
-  TODOLIST: '/todolist',
-  LOGIN: '/login',
+  TODO: '/todo',
+  SIGNIN: '/signin',
   SIGNUP: '/signup',
 };

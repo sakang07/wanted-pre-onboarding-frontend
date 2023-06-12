@@ -7,8 +7,8 @@ interface ButtonProps {
   [rest: string]: unknown;
 }
 
-const StyledButton = styled.button<{ height: string }>`
-  height: ${props => props.height};
+const ContainedButton = styled.button<{ $height: string }>`
+  height: ${props => props.$height};
   flex-shrink: 0;
   padding: 8px 16px;
   border-radius: 4px;
@@ -26,15 +26,53 @@ const StyledButton = styled.button<{ height: string }>`
     box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
     transition-duration: 0.1s;
   }
+
+  &:disabled {
+    box-shadow: none;
+    background-image: none;
+    text-shadow: none;
+    background-color: #cfcfcf;
+  }
 `;
 
 const Button: React.FC<ButtonProps> = props => {
   const { children, height = 'auto', ...rest } = props;
 
   return (
-    <StyledButton type="button" height={height} {...rest}>
+    <ContainedButton $height={height} {...rest}>
       {children}
-    </StyledButton>
+    </ContainedButton>
   );
 };
 export default Button;
+
+export const TextButton = styled.button`
+  display: inline-block;
+  border: 0;
+  font-size: 14px;
+  color: #555;
+  text-decoration: underline;
+  background-color: transparent;
+`;
+
+const LabelButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+interface LabelButtonProps {
+  children: React.ReactNode;
+  label: string;
+  onClick: () => void;
+}
+
+export const LabelButton = (props: LabelButtonProps) => {
+  const { children, label, onClick } = props;
+  return (
+    <LabelButtonWrapper>
+      <p>{label}</p>
+      <TextButton onClick={onClick}>{children}</TextButton>
+    </LabelButtonWrapper>
+  );
+};

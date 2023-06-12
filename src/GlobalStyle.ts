@@ -73,6 +73,9 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #efefef;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    color: #1f2123;
   }
   
   * {

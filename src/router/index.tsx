@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import SignUp from '@/page/SignUp';
-import Login from '@/page/Login';
+import SignIn from '@/page/SignIn';
 import NotFound from '@/page/NotFound';
 import ProtectedRouter from '@/router/ProtectedRouter';
 import Layout from '@/layout/Layout';
@@ -20,12 +20,12 @@ const Router = () => {
             </ProtectedRouter>
           }
         >
-          <Route index element={<Navigate to={URL.TODOLIST} replace={true} />} />
-          <Route path={URL.TODOLIST} element={<TodoList />} />
+          <Route index element={<Navigate to={URL.TODO} replace={true} />} />
+          <Route path={URL.TODO} element={<TodoList />} />
         </Route>
 
         <Route path={URL.SIGNUP} element={<SignUp />} />
-        <Route path={URL.LOGIN} element={<Login />} />
+        <Route path={URL.SIGNIN} element={<SignIn />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

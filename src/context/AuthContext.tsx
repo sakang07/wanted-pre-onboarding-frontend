@@ -1,38 +1,38 @@
 import React, { createContext, useMemo, useState } from 'react';
-import { LOGIN_TOKEN } from '@/constant';
+import { SIGNIN_TOKEN } from '@/constant';
 
 interface AuthContextProps {
-  isLogin: boolean;
+  isSignIn: boolean;
   getToken?: () => void;
 }
 
-export const AuthContext = createContext<AuthContextProps>({ isLogin: false });
+export const AuthContext = createContext<AuthContextProps>({ isSignIn: false });
 
 interface AuthProviderProps {
   children: React.ReactNode;
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isSignIn, setIsSignIn] = useState(false);
 
   const getToken = () => {
     console.log('click getToken');
-    const token = window.localStorage.getItem(LOGIN_TOKEN);
+    const token = window.localStorage.getItem(SIGNIN_TOKEN);
     if (token) {
-      setIsLogin(true);
+      setIsSignIn(true);
       console.log('token', token);
     } else {
-      setIsLogin(false);
+      setIsSignIn(false);
       console.log('no token', token);
     }
   };
 
   const value: AuthContextProps = useMemo(
     () => ({
-      isLogin: isLogin,
+      isSignIn: isSignIn,
       getToken: getToken,
     }),
-    [isLogin, getToken],
+    [isSignIn, getToken],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

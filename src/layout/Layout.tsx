@@ -9,10 +9,10 @@ const LayoutWrapper = styled.div`
   width: 100%;
 `;
 
-const MainWrapper = styled.main<{ headerHeight: number }>`
+const MainWrapper = styled.main<{ $headerHeight: number }>`
   width: 100%;
   min-height: 1000px;
-  padding-top: ${props => props.headerHeight + 30 + 'px'};
+  padding-top: ${props => props.$headerHeight + 30 + 'px'};
   padding-right: 20px;
   padding-left: 20px;
   padding-bottom: 50px;
@@ -24,7 +24,7 @@ const Layout = () => {
   return (
     <LayoutWrapper>
       <Header height={HEADER_HEIGHT} />
-      <MainWrapper headerHeight={HEADER_HEIGHT}>
+      <MainWrapper $headerHeight={HEADER_HEIGHT}>
         <Outlet />
       </MainWrapper>
       <Footer />

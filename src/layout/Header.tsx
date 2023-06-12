@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Button from '@/component/Button';
-import { LOGIN_TOKEN, URL } from '@/constant';
+import { SIGNIN_TOKEN, URL } from '@/constant';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import AuthContext from '@/context/AuthContext';
@@ -9,11 +9,11 @@ interface HeaderProps {
   height: number;
 }
 
-const HeaderWrapper = styled.header<{ height: number }>`
+const HeaderWrapper = styled.header<{ $height: number }>`
   position: fixed;
   z-index: 1000;
   width: 100%;
-  height: ${props => props.height + 'px'};
+  height: ${props => props.$height + 'px'};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,13 +34,13 @@ const Header: React.FC<HeaderProps> = ({ height }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    window.localStorage.removeItem(LOGIN_TOKEN);
+    window.localStorage.removeItem(SIGNIN_TOKEN);
     getToken?.();
-    navigate(URL.LOGIN);
+    navigate(URL.SIGNIN);
   };
 
   return (
-    <HeaderWrapper height={height}>
+    <HeaderWrapper $height={height}>
       <h1>To do List</h1>
       <Button onClick={handleLogout}>Logout</Button>
     </HeaderWrapper>

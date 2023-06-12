@@ -8,14 +8,14 @@ interface ProtectedRouterProps {
 }
 
 const ProtectedRouter: React.FC<ProtectedRouterProps> = ({ children }) => {
-  const { isLogin, getToken } = useContext(AuthContext);
+  const { isSignIn, getToken } = useContext(AuthContext);
 
   useEffect(() => {
     getToken?.();
   }, []);
 
-  if (!isLogin) {
-    return <Navigate to={URL.LOGIN} />;
+  if (!isSignIn) {
+    return <Navigate to={URL.SIGNIN} />;
   }
   return children;
 };
