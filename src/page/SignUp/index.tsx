@@ -1,15 +1,39 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import UserForm, { FormValues } from '@/component/UserForm';
 import { URL } from '@/constant';
 import { useNavigate } from 'react-router-dom';
+import authService from '@/api/authService';
+import LoadingContext from '@/context/LoadingContext';
+import AlertContext from '@/context/AlertContext';
 
 const TITLE = '회원가입';
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const { showLoading, hideLoading } = useContext(LoadingContext);
+  const { showAlert } = useContext(AlertContext);
+
   const handleSignUp = (formValues: FormValues) => {
     console.log('회원가입', formValues);
-    navigate(URL.SIGNIN);
+    showLoading();
+    authService
+      .signUp(formValues)
+      .then(response => {
+        console.log(response);
+        showAlert({
+          title: '회원가입 완료',
+          children: `${formValues.email} 님의 회원가입이 완료되었습니다.`,
+          onClose: () => navigate(URL.SIGNIN),
+        });
+      })
+      .catch(error => {
+        console.log(error);
+        showAlert({
+          title: '회원가입 실패',
+          children: error.response.data.message,
+        });
+      })
+      .finally(() => hideLoading());
   };
 
   return (

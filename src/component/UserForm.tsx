@@ -58,9 +58,8 @@ interface UserFormProps {
 }
 
 export interface FormValues {
-  userId: string;
-  userPw: string;
-  userEmail: string;
+  email: string;
+  password: string;
 }
 
 const UserForm = (props: UserFormProps) => {
@@ -69,9 +68,8 @@ const UserForm = (props: UserFormProps) => {
   const { isSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState<FormValues>({
-    userId: '',
-    userPw: '',
-    userEmail: '',
+    password: '',
+    email: '',
   });
   const [error, setError] = useState<FormValues | null | undefined>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -89,13 +87,12 @@ const UserForm = (props: UserFormProps) => {
   }, [formValues]);
 
   const validate = (formValues: FormValues) => {
-    const { userPw, userEmail } = formValues;
+    const { password, email } = formValues;
     const newError = {
-      userId: '',
-      userPw: userPw.length < 8 ? '비밀번호는 8글자 이상으로 입력해 주세요' : '',
-      userEmail: !userEmail.includes('@') ? 'Email의 형식이 잘못되었습니다' : '',
+      password: password.length < 8 ? '비밀번호는 8글자 이상으로 입력해 주세요' : '',
+      email: !email.includes('@') ? 'Email의 형식이 잘못되었습니다' : '',
     };
-    if (newError.userPw || newError.userEmail) {
+    if (newError.password || newError.email) {
       setError(newError);
       return false;
     } else {
@@ -134,33 +131,23 @@ const UserForm = (props: UserFormProps) => {
       <div>
         <TextField
           type="text"
-          id="userId"
-          name="userId"
-          label="ID"
-          error={error?.userId}
-          placeholder="아이디를 입력해주세요"
+          id="email"
+          name="email"
+          label="Email ID"
+          error={error?.email}
+          placeholder="이메일 ID를 입력해주세요"
           onChange={handleChange}
           data-testid="email-input"
         />
         <TextField
           type="password"
-          id="userPw"
-          name="userPw"
+          id="password"
+          name="password"
           label="Password"
-          error={error?.userPw}
+          error={error?.password}
           placeholder="비밀번호를 입력해주세요"
           onChange={handleChange}
           data-testid="password-input"
-        />
-        <TextField
-          type="text"
-          id="userEmail"
-          name="userEmail"
-          label="Email"
-          error={error?.userEmail}
-          placeholder="이메일을 입력해주세요"
-          onChange={handleChange}
-          data-testid="email-input"
         />
       </div>
 

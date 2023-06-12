@@ -16,7 +16,7 @@ const Wrapper = styled.div<{ $isError: boolean }>`
     min-width: 80px;
     padding: 8px 0;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 500;
   }
 
   & > div {

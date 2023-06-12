@@ -3,4 +3,5 @@ export const URL = {
   TODO: '/todo',
   SIGNIN: '/signin',
   SIGNUP: '/signup',
+  AUTH: '/auth',
 };
