@@ -4,12 +4,12 @@ import Footer from '@/layout/Footer';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
-const LayoutWrapper = styled('div')`
+const LayoutWrapper = styled.div`
   position: relative;
   width: 100%;
 `;
 
-const MainWrapper = styled('main')<{ headerHeight: number }>`
+const MainWrapper = styled.main<{ headerHeight: number }>`
   width: 100%;
   min-height: 1000px;
   padding-top: ${props => props.headerHeight + 30 + 'px'};

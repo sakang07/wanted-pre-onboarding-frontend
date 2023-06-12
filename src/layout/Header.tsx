@@ -9,7 +9,7 @@ interface HeaderProps {
   height: number;
 }
 
-const HeaderWrapper = styled('header')<{ height: number }>`
+const HeaderWrapper = styled.header<{ height: number }>`
   position: fixed;
   z-index: 1000;
   width: 100%;

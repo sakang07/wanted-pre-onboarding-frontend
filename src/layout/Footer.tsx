@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const FooterWrapper = styled('footer')`
+const FooterWrapper = styled.footer`
   width: 100%;
   padding: 50px 20px;
   font-size: 14px;
