@@ -14,12 +14,10 @@ const SignUp = () => {
   const { showAlert } = useContext(AlertContext);
 
   const handleSignUp = (formValues: FormValues) => {
-    console.log('회원가입', formValues);
     showLoading();
     authService
       .signUp(formValues)
-      .then(response => {
-        console.log(response);
+      .then(() => {
         showAlert({
           title: '회원가입 완료',
           children: `${formValues.email} 님의 회원가입이 완료되었습니다.`,

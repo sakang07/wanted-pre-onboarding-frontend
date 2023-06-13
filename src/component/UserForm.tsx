@@ -112,7 +112,6 @@ const UserForm = (props: UserFormProps) => {
     setIsSubmitted(true);
     const isValid = validate(formValues);
     if (isValid) {
-      console.log('통과');
       onSubmit(formValues);
     }
   };

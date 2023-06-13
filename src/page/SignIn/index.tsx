@@ -14,12 +14,10 @@ const SignIn = () => {
   const { showAlert } = useContext(AlertContext);
 
   const handleSignIn = (formValues: FormValues) => {
-    console.log('로그인', formValues);
     showLoading();
     authService
       .signIn(formValues)
       .then(response => {
-        console.log(response);
         window.localStorage.setItem(SIGNIN_TOKEN, response.data.access_token);
         getToken?.();
       })

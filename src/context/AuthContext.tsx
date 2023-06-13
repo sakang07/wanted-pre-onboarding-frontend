@@ -16,14 +16,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isSignIn, setIsSignIn] = useState(false);
 
   const getToken = () => {
-    console.log('click getToken');
     const token = window.localStorage.getItem(SIGNIN_TOKEN);
     if (token) {
       setIsSignIn(true);
-      console.log('token', token);
     } else {
       setIsSignIn(false);
-      console.log('no token', token);
     }
   };
 
