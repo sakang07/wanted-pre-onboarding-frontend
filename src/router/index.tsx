@@ -5,7 +5,7 @@ import SignIn from '@/page/SignIn';
 import NotFound from '@/page/NotFound';
 import ProtectedRouter from '@/router/ProtectedRouter';
 import Layout from '@/layout/Layout';
-import TodoList from '@/page/TodoList';
+import Todo from '@/page/Todo';
 import { URL } from '@/constant';
 
 const Router = () => {
@@ -21,7 +21,7 @@ const Router = () => {
           }
         >
           <Route index element={<Navigate to={URL.TODO} replace={true} />} />
-          <Route path={URL.TODO} element={<TodoList />} />
+          <Route path={URL.TODO} element={<Todo />} />
         </Route>
 
         <Route path={URL.SIGNUP} element={<SignUp />} />
