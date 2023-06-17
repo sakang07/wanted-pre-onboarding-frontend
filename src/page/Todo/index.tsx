@@ -23,7 +23,7 @@ export interface TodoValues extends UpdateTodo {
 
 const Form = styled.form`
   position: relative;
-  max-width: 700px;
+  max-width: 600px;
   width: 100%;
   display: flex;
   margin: 20px auto 20px;
@@ -63,7 +63,7 @@ const Todo = () => {
   const { isLoading, showLoading, hideLoading } = useContext(LoadingContext);
   const { showAlert } = useContext(AlertContext);
   const [todoList, setTodoList] = useState<TodoValues[]>([]);
-  const newTodoRef = useRef<HTMLInputElement | null>(null);
+  const newRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     getTodos();
@@ -94,6 +94,7 @@ const Todo = () => {
       .then(response => {
         const newTodo = response.data;
         setTodoList(prevState => [...prevState, newTodo]);
+        newRef.current?.value && (newRef.current.value = '');
       })
       .catch(error => {
         console.log(error);
@@ -144,7 +145,8 @@ const Todo = () => {
 
   const handleCreate = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const newTodo = newTodoRef.current?.value;
+    const newTodo = newRef.current?.value;
+    console.log(newRef.current);
     if (newTodo?.trim()) {
       createTodo({ todo: newTodo });
     }
@@ -157,7 +159,7 @@ const Todo = () => {
           type="text"
           id="newTodo"
           name="newTodo"
-          ref={newTodoRef}
+          ref={newRef}
           placeholder="오늘의 할일을 입력해 보세요"
           data-testid="new-todo-input"
         />
@@ -167,7 +169,7 @@ const Todo = () => {
         </RoundButton>
       </Form>
 
-      <Container $width={700}>
+      <Container $width={600}>
         {!isLoading && !todoList.length ? (
           <P>
             투두리스트가 없습니다. <br />
