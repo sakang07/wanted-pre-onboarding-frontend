@@ -28,5 +28,4 @@ $ npm start
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
-
+[MIT](https://choosealicense.com/licenses/mit/) © [강슬아 Saki](https://github.com/sakang07)
