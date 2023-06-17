@@ -5,17 +5,12 @@ import { URL } from '@/constant';
 import Button, { LabelButton } from '@/component/Button';
 import styled from 'styled-components';
 import TextField from '@/component/TextField';
+import Container from '@/component/Container';
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 30px;
-  width: 500px;
-  margin: 100px auto 0;
-  padding: 80px 60px;
-  border-radius: 4px;
-  background-color: #fff;
-  box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
 
   & > div {
     display: flex;
@@ -48,7 +43,7 @@ interface UserFormProps {
   submit: {
     button: string;
     testid: string;
-    bgImg?: string;
+    color?: string;
   };
   otherPage: {
     button: string;
@@ -121,44 +116,46 @@ const UserForm = (props: UserFormProps) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <TitleWrapper>
-        <h2>{title}</h2>
-        <p>{subTitle}</p>
-      </TitleWrapper>
+    <Container $marginTop={100}>
+      <Form onSubmit={handleSubmit}>
+        <TitleWrapper>
+          <h2>{title}</h2>
+          <p>{subTitle}</p>
+        </TitleWrapper>
 
-      <div>
-        <TextField
-          type="text"
-          id="email"
-          name="email"
-          label="Email ID"
-          error={error?.email}
-          placeholder="이메일 ID를 입력해주세요"
-          onChange={handleChange}
-          data-testid="email-input"
-        />
-        <TextField
-          type="password"
-          id="password"
-          name="password"
-          label="Password"
-          error={error?.password}
-          placeholder="비밀번호를 입력해주세요"
-          onChange={handleChange}
-          data-testid="password-input"
-        />
-      </div>
+        <div>
+          <TextField
+            type="text"
+            id="email"
+            name="email"
+            label="Email ID"
+            error={error?.email}
+            placeholder="이메일 ID를 입력해주세요"
+            onChange={handleChange}
+            data-testid="email-input"
+          />
+          <TextField
+            type="password"
+            id="password"
+            name="password"
+            label="Password"
+            error={error?.password}
+            placeholder="비밀번호를 입력해주세요"
+            onChange={handleChange}
+            data-testid="password-input"
+          />
+        </div>
 
-      <div>
-        <Button type="submit" height="44px" bgImg={submit?.bgImg} data-testid={submit.testid} disabled={Boolean(error)}>
-          {submit.button}
-        </Button>
-        <LabelButton label={otherPage.label} onClick={handleNavigate}>
-          {otherPage.button}
-        </LabelButton>
-      </div>
-    </Form>
+        <div>
+          <Button type="submit" data-testid={submit.testid} $height="44px" $color={submit.color} disabled={Boolean(error)}>
+            {submit.button}
+          </Button>
+          <LabelButton label={otherPage.label} onClick={handleNavigate}>
+            {otherPage.button}
+          </LabelButton>
+        </div>
+      </Form>
+    </Container>
   );
 };
 

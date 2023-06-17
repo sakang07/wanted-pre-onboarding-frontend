@@ -67,6 +67,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html, body {
+    min-width: 360px;
     margin: 0;
     padding: 0;
     font-family: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -80,6 +81,10 @@ const GlobalStyle = createGlobalStyle`
   
   * {
     box-sizing: border-box;
+  }
+  
+  a {
+    text-decoration: none;
   }
 `;
 

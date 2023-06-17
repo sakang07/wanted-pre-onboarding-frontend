@@ -1,5 +1,6 @@
 import React from 'react';
+import PublicLayout from '@/layout/PublicLayout';
 
-const NotFound = () => <div>notfound</div>;
+const NotFound = () => <PublicLayout>notfound</PublicLayout>;
 
 export default NotFound;

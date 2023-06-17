@@ -46,9 +46,16 @@ export const AlertProvider: React.FC<AlertProviderProps> = ({ children }) => {
   return (
     <AlertContext.Provider value={value}>
       {isAlert && (
-        <Alert title={alertContent?.title} closeCopy={alertContent?.closeCopy} onClose={hideAlert}>
-          {alertContent?.children}
-        </Alert>
+        <Alert
+          title={alertContent?.title}
+          closeCopy={alertContent?.closeCopy}
+          onClose={hideAlert}
+          onClick={() => {
+            alertContent?.onClick && alertContent.onClick();
+            hideAlert();
+          }}
+          content={alertContent?.content ?? ''}
+        />
       )}
       {children}
     </AlertContext.Provider>

@@ -11,11 +11,10 @@ const LayoutWrapper = styled.div`
 
 const MainWrapper = styled.main<{ $headerHeight: number }>`
   width: 100%;
-  min-height: 1000px;
   padding-top: ${props => props.$headerHeight + 30 + 'px'};
   padding-right: 20px;
   padding-left: 20px;
-  padding-bottom: 50px;
+  padding-bottom: 30px;
 `;
 
 const Layout = () => {

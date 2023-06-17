@@ -2,14 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface ButtonProps {
-  children: React.ReactNode;
-  height?: string;
-  bgImg?: string | undefined;
-  [rest: string]: unknown;
+  $height?: string;
+  $color?: string;
 }
 
-const ContainedButton = styled.button<{ $height: string; $bgImg: string }>`
-  height: ${props => props.$height};
+const Button = styled.button<ButtonProps>`
+  height: ${props => props.$height ?? 'auto'};
   flex-shrink: 0;
   padding: 8px 16px;
   border-radius: 4px;
@@ -19,7 +17,7 @@ const ContainedButton = styled.button<{ $height: string; $bgImg: string }>`
   text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
   text-transform: uppercase;
   color: #ffffff;
-  background-image: ${props => props.$bgImg};
+  background-color: ${props => props.$color ?? '#4682b4'};
   transition: all 0.5s;
   cursor: pointer;
 
@@ -36,20 +34,6 @@ const ContainedButton = styled.button<{ $height: string; $bgImg: string }>`
   }
 `;
 
-const Button: React.FC<ButtonProps> = props => {
-  const {
-    children,
-    height = 'auto',
-    bgImg = 'linear-gradient(92.88deg, #455eb5 9.16%, #5643cc 43.89%, #673fd7 64.72%)',
-    ...rest
-  } = props;
-
-  return (
-    <ContainedButton $height={height} $bgImg={bgImg} {...rest}>
-      {children}
-    </ContainedButton>
-  );
-};
 export default Button;
 
 export const TextButton = styled.button`
@@ -78,7 +62,47 @@ export const LabelButton = (props: LabelButtonProps) => {
   return (
     <LabelButtonWrapper>
       <p>{label}</p>
-      <TextButton onClick={onClick}>{children}</TextButton>
+      <TextButton type="button" onClick={onClick}>
+        {children}
+      </TextButton>
     </LabelButtonWrapper>
   );
 };
+
+interface RoundButtonProps {
+  $primary?: boolean;
+  $color?: string;
+}
+
+export const RoundButton = styled.button<RoundButtonProps>`
+  flex-shrink: 0;
+  height: 34px;
+  padding: 8px 16px;
+  border-radius: 100px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: ${props => props.$color ?? '#4682b4'};
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #fff;
+  color: ${props => props.$color ?? '#4682b4'};
+  cursor: pointer;
+  ${props =>
+    props.$primary && {
+      borderStyle: 'none',
+      color: '#fff',
+      backgroundColor: props.$color ?? '#4682b4',
+    }}
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.2) 0 1px 20px;
+    transition-duration: 0.1s;
+  }
+
+  &:disabled {
+    box-shadow: none;
+    background-image: none;
+    text-shadow: none;
+    background-color: #cfcfcf;
+  }
+`;

@@ -1,12 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from '@/component/Button';
+import { ReactComponent as CloseIcon } from '@/asset/image/icon-close.svg';
+import IconButton from '@/component/IconButton';
 
 export interface AlertProps {
-  children: React.ReactNode;
-  title?: string | undefined;
-  closeCopy?: string | undefined;
-  onClose?: () => void | undefined;
+  content: string;
+  title?: string;
+  closeCopy?: string;
+  onClose?: () => void;
+  onClick?: () => void;
 }
 
 const AlertWrapper = styled.div`
@@ -16,6 +19,10 @@ const AlertWrapper = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
+  display: flex;
+`;
+
+const AlertBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -31,15 +38,30 @@ const AlertWrapper = styled.div`
   background-color: #fff;
 `;
 
+const BackDrop = styled.div`
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+`;
+
 const TitleBox = styled.div`
   width: 100%;
   max-height: 40px;
-  p {
-    display: block;
-    padding: 16px 6px;
-    font-weight: 600;
+  & > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & p {
+      display: block;
+      padding: 16px 6px;
+      font-weight: 600;
+    }
   }
-  hr {
+  & hr {
     width: 100%;
     height: 1px;
     border: none;
@@ -56,30 +78,40 @@ const ContentBox = styled.div`
   width: 100%;
   padding: 30px 10px 20px;
   text-align: center;
-  p {
+  & p {
     flex: 1;
     margin: auto;
     line-height: 1.3;
   }
-  button {
+  & button {
     margin: auto;
     min-width: 100px;
   }
 `;
 
 const Alert = (props: AlertProps) => {
-  const { children, title = 'Error', closeCopy = '확인', onClose } = props;
+  const { content, title = 'Error', closeCopy = '확인', onClose, onClick } = props;
 
   return (
     <AlertWrapper>
-      <TitleBox>
-        <p>{title}</p>
-        <hr />
-      </TitleBox>
-      <ContentBox>
-        <p>{children}</p>
-        <Button onClick={onClose}>{closeCopy}</Button>
-      </ContentBox>
+      <AlertBox>
+        <TitleBox>
+          <div>
+            <p>{title}</p>
+            <IconButton onClick={onClose}>
+              <CloseIcon />
+            </IconButton>
+          </div>
+          <hr />
+        </TitleBox>
+        <ContentBox>
+          <p>{content}</p>
+          <Button type="button" onClick={onClick ?? onClose}>
+            {closeCopy}
+          </Button>
+        </ContentBox>
+      </AlertBox>
+      <BackDrop onClick={onClose} />
     </AlertWrapper>
   );
 };

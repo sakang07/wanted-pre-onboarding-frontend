@@ -2,13 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface TextFieldProps {
-  id: string;
-  label: string;
-  error?: string | undefined;
+  id?: string;
+  label?: string;
+  error?: string;
   [rest: string]: unknown;
 }
 
 const Wrapper = styled.div<{ $isError: boolean }>`
+  flex: 1;
   display: flex;
   gap: 20px;
 
@@ -27,10 +28,12 @@ const Wrapper = styled.div<{ $isError: boolean }>`
 
     & > input {
       flex: 1;
+      height: 34px;
       padding: 8px 16px;
-      border: 1px solid #ccc;
+      border-width: 1px;
+      border-style: solid;
       outline-color: ${props => props.$isError && '#de3163'};
-      border-color: ${props => props.$isError && '#de3163'};
+      border-color: ${props => (props.$isError ? '#de3163' : '#ccc')};
       border-radius: 4px;
       font-size: 14px;
       background-color: ${props => props.$isError && '#fff5ee'};
@@ -46,6 +49,12 @@ const Wrapper = styled.div<{ $isError: boolean }>`
       color: #de3163;
     }
   }
+
+  @media all and (max-width: 450px) {
+    & > label {
+      display: none;
+    }
+  }
 `;
 
 const TextField: React.FC<TextFieldProps> = props => {
@@ -53,7 +62,7 @@ const TextField: React.FC<TextFieldProps> = props => {
 
   return (
     <Wrapper $isError={Boolean(error)}>
-      <label htmlFor={id}>{label}</label>
+      {label && <label htmlFor={id}>{label}</label>}
       <div>
         <input id={id} {...rest} />
         {error && <p>{error}</p>}
@@ -62,3 +71,12 @@ const TextField: React.FC<TextFieldProps> = props => {
   );
 };
 export default TextField;
+
+export const Input = styled.input`
+  flex: 1;
+  height: 34px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+`;
