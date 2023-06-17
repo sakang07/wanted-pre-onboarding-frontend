@@ -15,7 +15,7 @@ const Form = styled.form`
   & > div {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
   }
 `;
 

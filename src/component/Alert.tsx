@@ -20,6 +20,7 @@ const AlertWrapper = styled.div`
   right: 0;
   bottom: 0;
   display: flex;
+  min-width: 360px;
 `;
 
 const AlertBox = styled.div`
@@ -36,6 +37,10 @@ const AlertBox = styled.div`
   border-radius: 4px;
   box-shadow: rgba(0, 0, 0, 0.2) 0 1px 20px;
   background-color: #fff;
+
+  @media all and (max-width: 450px) {
+    width: calc(100% - 40px);
+  }
 `;
 
 const BackDrop = styled.div`
@@ -43,7 +48,7 @@ const BackDrop = styled.div`
   z-index: -1;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.4);
   cursor: pointer;
 `;
 
@@ -106,7 +111,7 @@ const Alert = (props: AlertProps) => {
         </TitleBox>
         <ContentBox>
           <p>{content}</p>
-          <Button type="button" onClick={onClick ?? onClose}>
+          <Button type="button" onClick={onClick ?? onClose} $height="36px">
             {closeCopy}
           </Button>
         </ContentBox>

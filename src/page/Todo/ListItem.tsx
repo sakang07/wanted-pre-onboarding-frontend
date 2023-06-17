@@ -57,6 +57,7 @@ const Span = styled.span`
   font-weight: 500;
   line-height: 1.4;
   word-break: break-word;
+  letter-spacing: -0.2px;
 `;
 
 const ListItem = (props: ListItemProps) => {
@@ -82,8 +83,10 @@ const ListItem = (props: ListItemProps) => {
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    const newTodo = { ...todoValues, todo: modifiedTodo };
-    updateTodo(todoValues.id, newTodo);
+    if (modifiedTodo) {
+      const newTodo = { ...todoValues, todo: modifiedTodo };
+      updateTodo(todoValues.id, newTodo);
+    }
     handleChangeMode(event);
   };
 

@@ -36,6 +36,7 @@ const Form = styled.form`
     border: 1px solid #ccc;
     border-radius: 100px;
     font-size: 15px;
+    letter-spacing: -0.2px;
   }
 
   button {
