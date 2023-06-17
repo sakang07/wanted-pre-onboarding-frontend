@@ -99,7 +99,7 @@ const ListItem = (props: ListItemProps) => {
     <Li>
       <Label>
         <Checkbox type="checkbox" checked={todoValues.isCompleted} onChange={handleChangeChecked} />
-        <Input type="text" defaultValue={todoValues.todo} onChange={handleChangeInput} />
+        <Input type="text" data-testid="modify-input" defaultValue={todoValues.todo} onChange={handleChangeInput} />
       </Label>
       <RoundButton type="button" data-testid="submit-button" onClick={handleSubmit} $primary $color="#E37383">
         제출
