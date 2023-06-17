@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Button from '@/component/Button';
 import { ReactComponent as CloseIcon } from '@/asset/image/icon-close.svg';
@@ -96,6 +96,13 @@ const ContentBox = styled.div`
 
 const Alert = (props: AlertProps) => {
   const { content, title = 'Error', closeCopy = '확인', onClose, onClick } = props;
+  const ref = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (ref?.current) {
+      ref.current.focus();
+    }
+  }, []);
 
   return (
     <AlertWrapper>
@@ -111,7 +118,7 @@ const Alert = (props: AlertProps) => {
         </TitleBox>
         <ContentBox>
           <p>{content}</p>
-          <Button type="button" onClick={onClick ?? onClose} $height="36px">
+          <Button type="button" onClick={onClick ?? onClose} ref={ref} $height="36px">
             {closeCopy}
           </Button>
         </ContentBox>
