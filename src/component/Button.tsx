@@ -79,7 +79,7 @@ export const RoundButton = styled.button<RoundButtonProps>`
   height: 34px;
   padding: 8px 16px;
   border-radius: 100px;
-  border-width: 2px;
+  border-width: 1px;
   border-style: solid;
   border-color: ${props => props.$color ?? '#4682b4'};
   font-weight: bold;

@@ -37,7 +37,7 @@ const Checkbox = styled.input`
   padding: 0;
   margin: 0;
   margin-top: 8px;
-  outline: 2px solid #36454f;
+  outline: 1px solid #36454f;
   border: 3px solid #fff;
   border-radius: 100px;
   cursor: pointer;
